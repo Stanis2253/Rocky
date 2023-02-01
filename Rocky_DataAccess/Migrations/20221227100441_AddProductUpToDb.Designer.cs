@@ -8,11 +8,11 @@ using Rocky.Data;
 
 #nullable disable
 
-namespace Rocky.Migrations
+namespace Rocky_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221227100746_AddProductUp1ToDb")]
-    partial class AddProductUp1ToDb
+    [Migration("20221227100441_AddProductUpToDb")]
+    partial class AddProductUpToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

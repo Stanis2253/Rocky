@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Rocky.Migrations
+namespace Rocky_DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddTypeProduct : Migration

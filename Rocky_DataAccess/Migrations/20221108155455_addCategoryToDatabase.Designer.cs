@@ -8,7 +8,7 @@ using Rocky.Data;
 
 #nullable disable
 
-namespace Rocky.Migrations
+namespace Rocky_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20221108155455_addCategoryToDatabase")]
