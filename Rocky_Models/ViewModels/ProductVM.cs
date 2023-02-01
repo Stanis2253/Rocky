@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Rocky.Models.ViewModels
+namespace Rocky_Models.ViewModels
 {
     public class ProductVM
     {

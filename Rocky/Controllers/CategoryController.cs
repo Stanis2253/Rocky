@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rocky.Data;
-using Rocky.Models;
+using Rocky_Models;
 using System.Collections;
 
 namespace Rocky.Controllers

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Rocky.Models
+namespace Rocky_Models
 {
     public class ApplicationUser : IdentityUser
     {
