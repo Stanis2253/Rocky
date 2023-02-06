@@ -25,7 +25,6 @@ namespace Rocky_Utility
 
         private readonly IConfiguration _configuration;
 
-        public MailJetSettings _mailJetSettings { get; set; }
 
         public EmailSender(IConfiguration configuration)
         {
