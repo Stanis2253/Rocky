@@ -178,6 +178,15 @@ namespace Rocky.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        if (!User.IsInRole(WC.AdminRole))
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        return LocalRedirect(returnUrl);
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }

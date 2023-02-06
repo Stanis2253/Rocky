@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Rocky.Data;
 using Rocky_Utility;
@@ -22,7 +23,7 @@ internal class Program
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-        builder.Services.AddTransient<EmailSender>();
+        builder.Services.AddTransient<IEmailSender,EmailSender>();
 
         builder.Services.AddDistributedMemoryCache();
 

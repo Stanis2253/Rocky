@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Rocky_Utility
 {
-    public class MailJetSettings
+    public class EmailSettings
     {
-        public string ApiKey { get; set; }
-        public string SecretKey { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Collections;
 namespace Rocky.Controllers
 {
 
-    //[Authorize(Roles = WC.AdminRole)]
+    [Authorize(Roles = WC.AdminRole)]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
