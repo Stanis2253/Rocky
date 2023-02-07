@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Rocky.Data;
+using Rocky_DataAccess.Repository.IRepository;
 using Rocky_Models;
 using Rocky_Models.ViewModels;
 using Rocky_Utility;
@@ -14,39 +15,39 @@ namespace Rocky.Controllers
     [Authorize(Roles = WC.AdminRole)]
     public class ProductController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IProductRepository _prodRepo;
 
         private readonly IWebHostEnvironment _webHostEnvironment;
 
 
 
-        public ProductController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IProductRepository prodRepo, IWebHostEnvironment webHostEnvironment)
         {
-            _db = db;
+            _prodRepo = prodRepo;
 
             _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Product> objList = _db.Product;
+            IEnumerable<Product> objList = _prodRepo.GetAll(includeProperties: "Category,ApplicationType");
 
-            foreach (var obj in objList)
-            {
-                obj.Category = _db.Category.FirstOrDefault(u => u.Id == obj.CategoryId);
-            }
+            //foreach (var obj in objList)
+            //{
+            //    obj.Category = _prodRepo.FirstOrDefault(u => u.Id == obj.CategoryId);
+            //}
 
-            foreach (var obj in objList)
-            {
-                obj.ApplicationType = _db.ApplicationType.FirstOrDefault(u => u.Id == obj.ApplicationTypeId);
-            }
+            //foreach (var obj in objList)
+            //{
+            //    obj.ApplicationType = _prodRepo.ApplicationType.FirstOrDefault(u => u.Id == obj.ApplicationTypeId);
+            //}
 
             return View(objList);
         }
         //GET -- Upsert
         public IActionResult Upsert(int? Id)
         {
-            //IEnumerable<SelectListItem> CategoryDropDown = _db.Category.Select(i => new SelectListItem
+            //IEnumerable<SelectListItem> CategoryDropDown = _prodRepo.Category.Select(i => new SelectListItem
             //{
             //    Text = i.Name,
             //    Value = i.Id.ToString(),
@@ -61,18 +62,9 @@ namespace Rocky.Controllers
 
                 Product = new Product(),
 
-                CategorySelectList = _db.Category.Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString(),
-                }),
+                CategorySelectList = _prodRepo.GetAllDropdownList(WC.CategoryName),
 
-                ApplicationTypeSelectList = _db.ApplicationType.Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString(),
-                })
-
+                ApplicationTypeSelectList = _prodRepo.GetAllDropdownList(WC.ApplicationTypeName)
 
             };
 
@@ -83,7 +75,7 @@ namespace Rocky.Controllers
             }
             else
             {
-                productVM.Product = _db.Product.Find(Id);
+                productVM.Product = _prodRepo.Find(Id.GetValueOrDefault());
                 if (productVM.Product == null)
                 {
                     return NotFound();
@@ -119,13 +111,13 @@ namespace Rocky.Controllers
 
                     productVM.Product.Image = fileName + extension;
 
-                    _db.Product.Add(productVM.Product);
+                    _prodRepo.Add(productVM.Product);
 
 
                 }
                 else
                 {
-                    var objFromDb = _db.Product.AsNoTracking().FirstOrDefault(p => p.Id == productVM.Product.Id);
+                    var objFromDb = _prodRepo.FirstOrDefault(p => p.Id == productVM.Product.Id, isTracking: false);
                     if (files.Count > 0)
                     {
                         string upload = webRootPath + WC.ImagePath;
@@ -151,19 +143,17 @@ namespace Rocky.Controllers
                     {
                         productVM.Product.Image = objFromDb.Image;
                     }
-                    _db.Product.Update(productVM.Product);
+                    _prodRepo.Update(productVM.Product);
                 }
 
-                _db.SaveChanges();
+                _prodRepo.Save();
                 return RedirectToAction("Index");
 
 
             }
-            productVM.CategorySelectList = _db.Category.Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString(),
-            });
+            productVM.CategorySelectList = _prodRepo.GetAllDropdownList(WC.CategoryName);
+
+            productVM.ApplicationTypeSelectList = _prodRepo.GetAllDropdownList(WC.ApplicationTypeName);
 
             return View(productVM);
 
@@ -179,7 +169,7 @@ namespace Rocky.Controllers
                 return NotFound();
             }
 
-            var product = _db.Product.Include(p => p.Category).Include(p=> p.ApplicationType).FirstOrDefault(p => p.Id == id);
+            var product = _prodRepo.FirstOrDefault(u=>u.Id == id,includeProperties:"Category, ApplicationType");
 
 
 
@@ -196,7 +186,7 @@ namespace Rocky.Controllers
         public IActionResult DeletePost(int? id)
         {
             
-            var obj = _db.Product.Find(id);
+            var obj = _prodRepo.Find(id.GetValueOrDefault());
 
             if (obj == null)
             {
@@ -222,8 +212,8 @@ namespace Rocky.Controllers
 
             }
 
-            _db.Product.Remove(obj);
-            _db.SaveChanges();
+            _prodRepo.Remove(obj);
+            _prodRepo.Save();
             return RedirectToAction("Index");
 
         }

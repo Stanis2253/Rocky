@@ -10,5 +10,9 @@
 
         public const string EmailAdmin = "ooosaafamily@gmail.com";
 
+        public const string CategoryName = "Category";
+        public const string ApplicationTypeName = "ApplicationType";
+
+
     }
 }
