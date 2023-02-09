@@ -31,5 +31,7 @@ namespace Rocky_Models
         public int ApplicationTypeId { get; set; }
         [ForeignKey("ApplicationTypeId")]
         public virtual ApplicationType ApplicationType { get; set; }
+
+
     }
 }
