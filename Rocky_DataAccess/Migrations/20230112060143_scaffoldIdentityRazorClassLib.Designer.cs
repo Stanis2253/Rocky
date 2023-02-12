@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Rocky.Data;
+using Rocky_DataAccess.Data;
 
 #nullable disable
 
-namespace Rocky_DataAccess.Migrations
+namespace Rocky._DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230112060143_scaffoldIdentityRazorClassLib")]
@@ -227,7 +227,7 @@ namespace Rocky_DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Rocky_Models.ApplicationType", b =>
+            modelBuilder.Entity("Rocky._Models.ApplicationType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -244,7 +244,7 @@ namespace Rocky_DataAccess.Migrations
                     b.ToTable("ApplicationType");
                 });
 
-            modelBuilder.Entity("Rocky_Models.Category", b =>
+            modelBuilder.Entity("Rocky._Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -264,7 +264,7 @@ namespace Rocky_DataAccess.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Rocky_Models.Product", b =>
+            modelBuilder.Entity("Rocky._Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -357,15 +357,15 @@ namespace Rocky_DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Rocky_Models.Product", b =>
+            modelBuilder.Entity("Rocky._Models.Product", b =>
                 {
-                    b.HasOne("Rocky_Models.ApplicationType", "ApplicationType")
+                    b.HasOne("Rocky._Models.ApplicationType", "ApplicationType")
                         .WithMany()
                         .HasForeignKey("ApplicationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Rocky_Models.Category", "Category")
+                    b.HasOne("Rocky._Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

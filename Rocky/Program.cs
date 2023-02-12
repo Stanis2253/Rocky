@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using Rocky.Data;
+using Rocky_DataAccess.Data;
 using Rocky_DataAccess.Repository;
 using Rocky_DataAccess.Repository.IRepository;
 using Rocky_Utility;
@@ -42,6 +42,8 @@ internal class Program
         builder.Services.AddScoped<IInquiryHeaderRepository, InquiryHeaderRepository>();
         builder.Services.AddScoped<IInquiryDetailRepository, InquiryDetailRepository>();
         builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+        builder.Services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
+        builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 
         builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace RockyDataAccess.Migrations
+namespace Rocky_DataAccess.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddInquiryHeaderAndDetailToDb : Migration

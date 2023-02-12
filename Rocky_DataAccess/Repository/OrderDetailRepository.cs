@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace Rocky_DataAccess.Repository
 {
-    public class InquiryDetailRepository : Repository<InquiryDetail>, IInquiryDetailRepository
+    public class OrderDetailRepository : Repository<OrderDetail>, IOrderDetailRepository
     {
         private readonly ApplicationDbContext _db;
-        public InquiryDetailRepository(ApplicationDbContext db): base(db)
+        public OrderDetailRepository(ApplicationDbContext db): base(db)
         {
             _db = db;
         }
 
-        public void Update(InquiryDetail obj)
+        public void Update(OrderDetail obj)
         {
-            _db.InquiryDetail.Update(obj);
+            _db.OrderDetail.Update(obj);
         }
     }
 }

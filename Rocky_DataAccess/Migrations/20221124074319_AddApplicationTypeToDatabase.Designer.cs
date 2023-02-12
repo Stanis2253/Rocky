@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Rocky.Data;
+using Rocky_DataAccess.Data;
 
 #nullable disable
 
-namespace Rocky_DataAccess.Migrations
+namespace Rocky._DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20221124074319_AddApplicationTypeToDatabase")]
@@ -24,7 +24,7 @@ namespace Rocky_DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Rocky_Models.ApplicationType", b =>
+            modelBuilder.Entity("Rocky._Models.ApplicationType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace Rocky_DataAccess.Migrations
                     b.ToTable("ApplicationType");
                 });
 
-            modelBuilder.Entity("Rocky_Models.Category", b =>
+            modelBuilder.Entity("Rocky._Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

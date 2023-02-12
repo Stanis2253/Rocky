@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Rocky_DataAccess.Repository.IRepository
 {
-    public interface IInquiryDetailRepository : IRepository<InquiryDetail>
+    public interface IOrderDetailRepository : IRepository<OrderDetail>
     {
-        void Update(InquiryDetail obj);
+        void Update(OrderDetail obj);
 
        
     }

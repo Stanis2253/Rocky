@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Rocky_Models;
 
-namespace Rocky.Data
+namespace Rocky_DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -17,6 +17,8 @@ namespace Rocky.Data
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<InquiryHeader> InquiryHeader { get; set; }
         public DbSet<InquiryDetail> InquiryDetail { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
+        public DbSet<OrderHeader> OrderHeader { get; set; }
 
     }
 }

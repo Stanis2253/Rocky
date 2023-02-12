@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Rocky.Data;
+using Rocky_DataAccess.Data;
 using Rocky_DataAccess.Repository.IRepository;
 using Rocky_Models;
 using Rocky_Utility;
@@ -14,29 +14,28 @@ namespace Rocky_DataAccess.Repository
     public class ProductRepository : Repository<Product>, IProductRepository
     {
         private readonly ApplicationDbContext _db;
-        public ProductRepository(ApplicationDbContext db) : base(db) 
+        public ProductRepository(ApplicationDbContext db): base(db)
         {
             _db = db;
         }
 
         public IEnumerable<SelectListItem> GetAllDropdownList(string obj)
         {
-            if (obj==WC.CategoryName)
+            if (obj == WC.CategoryName)
             {
                 return _db.Category.Select(i => new SelectListItem
                 {
                     Text = i.Name,
-                    Value = i.Id.ToString(),
+                    Value = i.Id.ToString()
                 });
             }
-            if (obj==WC.ApplicationTypeName)
+            if (obj == WC.ApplicationTypeName)
             {
                 return _db.ApplicationType.Select(i => new SelectListItem
                 {
                     Text = i.Name,
-                    Value = i.Id.ToString(),
+                    Value = i.Id.ToString()
                 });
-
             }
             return null;
         }

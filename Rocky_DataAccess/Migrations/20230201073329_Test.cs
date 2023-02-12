@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace RockyDataAccess.Migrations
+namespace Rocky_DataAccess.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class Test : Migration

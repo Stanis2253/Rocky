@@ -25,7 +25,7 @@ namespace Rocky_Models
         public double FinalOrderTotal { get; set; }
         public string OrderStatus { get; set; }
         public DateTime PaymentDate { get; set; }
-        public DateTime PaymentDueDate { get; set; }
+
         public string TransactionId { get; set; }
 
         [Required]

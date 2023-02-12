@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Rocky.Data;
+using Rocky_DataAccess.Data;
 using Rocky_DataAccess.Repository.IRepository;
 using Rocky_Models;
 using Rocky_Utility;
@@ -14,11 +14,10 @@ namespace Rocky_DataAccess.Repository
     public class InquiryHeaderRepository : Repository<InquiryHeader>, IInquiryHeaderRepository
     {
         private readonly ApplicationDbContext _db;
-        public InquiryHeaderRepository(ApplicationDbContext db) : base(db) 
+        public InquiryHeaderRepository(ApplicationDbContext db): base(db)
         {
             _db = db;
         }
-
 
         public void Update(InquiryHeader obj)
         {

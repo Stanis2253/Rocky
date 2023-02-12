@@ -12,5 +12,6 @@ namespace Rocky_DataAccess.Repository.IRepository
     {
         void Update(InquiryHeader obj);
 
+       
     }
 }

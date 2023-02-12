@@ -19,7 +19,6 @@ namespace Rocky_Models
         [ForeignKey("OrderHeaderId")]
         public OrderHeader OrderHeader { get; set; }
 
-
         [Required]
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
